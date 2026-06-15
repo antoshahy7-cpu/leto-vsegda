@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лето Всегда — туристическое агентство Светланы Городиловой</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF; --gold:#D4AF37; --gold-soft:#E7CF86; --cream:#F8F5EF;
+    --navy:#0B1F3A; --ink:#222a35; --muted:#8a9099; --line:#eee9dd;
+    --serif:'Literata',Georgia,serif; --sans:'Manrope',-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.6;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+  .narrow{max-width:920px;margin:0 auto}
+  h1,h2,h3{font-family:var(--serif);color:var(--navy);font-weight:500;line-height:1.08;letter-spacing:-.01em}
+  h1{font-size:clamp(46px,8vw,104px)}
+  h2{font-size:clamp(34px,5vw,64px);margin-bottom:24px}
+  h3{font-size:25px;font-weight:600;margin-bottom:8px}
+  p{margin-bottom:16px}
+  .lead{font-size:21px;color:var(--ink);font-weight:300}
+  .muted{color:var(--muted)}
+  .kick{font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:24px}
+  .kick::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);vertical-align:middle;margin:-2px 11px 0 0;opacity:.9}
+  section{padding:clamp(60px,9vw,108px) 0}
+  .center{text-align:center}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:16px;border-radius:100px;padding:17px 38px;cursor:pointer;border:1px solid transparent;transition:.2s;letter-spacing:.01em}
+  .btn-gold{background:var(--gold);color:#312707}
+  .btn-gold:hover{filter:brightness(1.06);transform:translateY(-1px)}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:#15305a;transform:translateY(-1px)}
+  .btn-white{background:#fff;color:var(--navy)}
+  .btn-white:hover{transform:translateY(-1px)}
+  .btn-line{background:transparent;color:var(--navy);border-color:var(--line)}
+  .btn-line:hover{border-color:var(--gold)}
+  .btn-light{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
+  .btn-light:hover{background:rgba(255,255,255,.12)}
+
+  /* golden arc motif (Mastercard orbital) */
+  .arc{width:100%;max-width:680px;height:90px;margin:0 auto;display:block}
+  /* signature: Света рекомендует */
+  .sreco .card{max-width:880px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:22px;padding:38px 44px;display:flex;gap:30px;align-items:center;box-shadow:0 1px 2px rgba(20,30,50,.04),0 18px 50px rgba(20,30,50,.07)}
+  .sreco .ava{width:104px;height:104px;border-radius:50%;flex-shrink:0;background:url('assets/svetlana.jpg') center 18%/cover;border:2px solid var(--gold)}
+  .sreco .tag{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+  .sreco .tag .d{width:7px;height:7px;border-radius:50%;background:var(--gold);display:inline-block}
+  .sreco .txt{font-family:var(--serif);font-size:23px;line-height:1.45;color:var(--ink);font-style:italic;margin:0}
+  .sreco .by{margin-top:16px;font-size:14px;color:var(--muted)}
+  .sreco .reco-list{list-style:none;margin:18px 0 6px;display:flex;flex-direction:column;gap:11px}
+  .sreco .reco-list li{display:flex;align-items:center;gap:13px;font-size:17px;color:var(--ink)}
+  .sreco .reco-list li .d{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0}
+  @media(max-width:680px){ .sreco .card{flex-direction:column;text-align:center;padding:30px 24px} }
+
+  /* header */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s}
+  header.scrolled{background:rgba(255,255,255,.97);border-bottom-color:var(--line);box-shadow:0 1px 30px rgba(20,30,50,.05)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:clamp(78px,11.5vw,146px);transition:height .3s}
+  .nav .logo{height:clamp(64px,10vw,132px);width:auto;transition:.3s}
+  header.scrolled .nav{height:clamp(70px,9vw,116px)}
+  header.scrolled .nav .logo{height:clamp(58px,8vw,104px)}
+  .nav nav{display:flex;gap:30px;font-size:18px;font-weight:500;color:var(--navy)}
+  .nav nav a{position:relative;padding-bottom:4px;transition:color .2s}
+  .nav nav a:hover{color:var(--gold)}
+  .nav nav a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--gold);transform:scaleX(0);transition:transform .25s;transform-origin:left}
+  .nav nav a:hover::after{transform:scaleX(1)}
+  .nav .right{display:flex;align-items:center;gap:18px}
+  .burger{display:none;align-items:center;gap:11px;background:none;border:0;cursor:pointer;padding:8px 2px;flex-shrink:0}
+  .burger .bl{font-size:16px;font-weight:600;color:var(--navy)}
+  .burger .lines{display:flex;flex-direction:column;gap:6px;width:27px}
+  .burger .lines span{display:block;width:100%;height:2px;background:var(--navy);border-radius:2px;transition:.3s}
+  .m-cta{display:none}
+  @media(max-width:920px){
+    .burger{display:flex}
+    .nav>nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(255,255,255,.98);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);padding:8px clamp(20px,5vw,48px) 22px;border-bottom:1px solid var(--line);box-shadow:0 24px 40px rgba(20,30,50,.1)}
+    header.open .nav>nav{display:flex}
+    .nav>nav a{padding:16px 2px;font-size:18px;border-bottom:1px solid var(--line);color:var(--navy)}
+    .nav>nav a::after{display:none}
+    .m-cta{display:block;margin-top:18px;text-align:center;background:var(--navy);color:#fff;border-radius:100px;border-bottom:0;padding:16px}
+    .bar-cta{display:none}
+    header.open .burger .lines span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+    header.open .burger .lines span:nth-child(2){opacity:0}
+    header.open .burger .lines span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  }
+
+  /* HERO — radical minimal (Tesla + Apple) */
+  .hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;
+    background:radial-gradient(95% 68% at 50% 47%,rgba(8,18,36,.44) 0%,rgba(8,18,36,.07) 55%,transparent 76%),
+    linear-gradient(180deg,rgba(8,18,36,.12),transparent 32%,rgba(8,18,36,.42)),
+    url('assets/hero.jpg') center/cover no-repeat,
+    #b9772e}
+  .hero h1{color:#fff;max-width:14ch;margin:0 auto;font-size:clamp(52px,8.6vw,108px);text-shadow:0 4px 44px rgba(0,0,0,.5)}
+  .hero-logo{height:clamp(96px,12vw,150px);width:auto;margin:0 auto 22px;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6)) drop-shadow(0 0 55px rgba(8,18,36,.55))}
+  .hero .sub{font-size:20px;color:rgba(255,255,255,.92);margin:30px auto 40px;max-width:34ch;font-weight:300}
+  .hero .scroll{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .hero .arc-overlay{position:absolute;bottom:-1px;left:0;width:100%;height:140px;opacity:.9;pointer-events:none}
+  .hero-sv{display:inline-flex;align-items:center;gap:13px;margin-top:32px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px);border-radius:100px;padding:8px 22px 8px 8px;color:#fff;text-align:left}
+  .hero-sv .av{width:46px;height:46px;border-radius:50%;background:var(--gold);color:#312707;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:21px;flex-shrink:0}
+  .hero-sv .t{font-size:13px;line-height:1.4;max-width:30ch} .hero-sv .t b{display:block;font-size:14px}
+  /* route line divider (golden trail as map route) */
+  .route{display:block;width:100%;max-width:460px;height:52px;margin:0 auto;opacity:.85}
+
+  /* statement (Apple big serif on white air) */
+  .statement{text-align:center}
+  .statement h2{font-size:clamp(38px,6vw,76px);line-height:1.05;max-width:16ch;margin:0 auto;font-weight:500}
+  .statement em{font-style:normal;color:var(--gold)}
+
+  /* svetlana editorial split */
+  .sv{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}
+  .sv .photo{aspect-ratio:4/5;border-radius:4px;overflow:hidden;position:relative}
+  .sv .photo img{width:100%;height:100%;object-fit:cover}
+  .sv .photo .cap{position:absolute;bottom:18px;left:18px;font-size:12px;color:#fff;letter-spacing:.1em;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+  .sv ul{list-style:none;margin:22px 0 28px}
+  .sv li{padding:11px 0;border-bottom:1px solid var(--line);font-size:18px;font-weight:300}
+  @media(max-width:880px){ .sv{grid-template-columns:1fr;gap:40px} }
+
+  /* trust — clean, no emoji */
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:60px}
+  .tcell{background:#fff;padding:44px 34px;text-align:left}
+  .tcell .nn{font-family:var(--serif);font-size:30px;color:var(--gold);margin-bottom:14px}
+  @media(max-width:880px){ .grid4{grid-template-columns:1fr 1fr} }
+
+  /* directions — photo cards (Airbnb) */
+  .dir{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:60px}
+  .dest{border-radius:8px;overflow:hidden;position:relative;height:420px;display:flex;align-items:flex-end;color:#fff;background-size:cover;background-position:center;transition:.3s}
+  .dest:hover{transform:translateY(-4px)}
+  .dest:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(8,18,36,.8))}
+  .dest .b{position:relative;z-index:2;padding:26px;width:100%}
+  .dest .b h3{color:#fff;font-size:30px;font-weight:500;margin-bottom:2px}
+  .dest .b .p{font-weight:400;font-size:15px}
+  .dest .b .p small{display:block;color:rgba(255,255,255,.75);font-size:13px;margin-top:3px}
+  @media(max-width:880px){ .dir{grid-template-columns:1fr 1fr} }
+  /* full-bleed carousel */
+  .carousel-wrap{position:relative;width:100%}
+  .carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px clamp(16px,4vw,40px) 26px;scroll-padding-left:clamp(16px,4vw,40px);cursor:grab;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+  .carousel::-webkit-scrollbar{display:none}
+  .carousel.dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+  .carousel .dest{flex:0 0 calc((100% - 60px)/4);height:clamp(360px,34vw,460px);scroll-snap-align:start}
+  .car-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:clamp(42px,4vw,54px);height:clamp(42px,4vw,54px);border-radius:50%;background:rgba(255,255,255,.95);border:1px solid var(--line);box-shadow:0 6px 22px rgba(20,30,50,.14);color:var(--navy);font-size:26px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .car-arrow:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .car-prev{left:clamp(4px,1.2vw,16px)} .car-next{right:clamp(4px,1.2vw,16px)}
+  @media(max-width:1100px){ .carousel .dest{flex-basis:calc((100% - 40px)/3)} }
+  @media(max-width:760px){ .carousel .dest{flex-basis:calc((100% - 20px)/2)} }
+  @media(max-width:520px){ .carousel .dest{flex-basis:100%} .car-arrow{display:none} }
+  .hint{font-size:13px;letter-spacing:.15em;color:var(--muted);margin-top:6px}
+
+  /* quiz */
+  .quiz{background:var(--cream);border-radius:10px;padding:clamp(28px,5vw,64px);max-width:1000px;margin:60px auto 0;text-align:center}
+  .quiz .row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:32px 0}
+  .quiz .f{background:#fff;border:1px solid var(--line);border-radius:6px;padding:18px;text-align:left}
+  .quiz .f span{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;letter-spacing:.05em}
+  .quiz .f b{color:var(--navy);font-weight:500}
+  .quiz .f.sel{display:flex;justify-content:space-between;align-items:center}
+  .quiz .f.sel:after{content:'▾';color:var(--gold);font-size:12px}
+  .chips{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin:4px 0 28px}
+  .chip{padding:10px 18px;border-radius:100px;border:1px solid var(--line);background:#fff;font-size:14px;color:var(--ink);cursor:pointer}
+  .chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  @media(max-width:760px){ .quiz .row{grid-template-columns:1fr 1fr} }
+
+  /* full-bleed cinematic quote (Tesla) */
+  .band{position:relative;color:#fff;text-align:center;padding:clamp(80px,14vw,150px) 0;
+    background:linear-gradient(rgba(8,18,36,.45),rgba(8,18,36,.45)),
+    url('assets/band.jpg') center/cover no-repeat;background-attachment:fixed}
+  .band h2{color:#fff;font-size:clamp(36px,5vw,68px);max-width:18ch;margin:0 auto;font-weight:500}
+  .band .q{font-style:italic;font-size:23px;color:var(--gold-soft);margin-top:18px}
+
+  /* editorial (Notion) */
+  .edi{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .edi .frame{border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+  .edi ul{list-style:none}
+  .edi li{padding:14px 0;border-bottom:1px solid var(--line);font-size:18px;font-weight:300;display:flex;gap:14px}
+  .edi li b{color:var(--gold);font-family:var(--serif);font-size:20px}
+  .reco{background:var(--cream);border-radius:8px;padding:26px 30px;margin-top:30px;font-size:17px}
+  .reco b{color:var(--navy);font-family:var(--serif);font-size:21px;display:block;margin-bottom:4px}
+  @media(max-width:880px){ .edi{grid-template-columns:1fr;gap:40px} }
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;margin-top:70px}
+  .step{text-align:left}
+  .step .n{font-family:var(--serif);font-size:64px;color:var(--gold-soft);line-height:.9;margin-bottom:14px}
+  @media(max-width:760px){ .steps{grid-template-columns:1fr;gap:36px} }
+
+  /* reviews */
+  .rev{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+  .review{padding:36px;border:1px solid var(--line);border-radius:8px;text-align:left}
+  .review .q{font-family:var(--serif);font-size:21px;color:var(--navy);font-weight:500;line-height:1.4;margin-bottom:22px}
+  .review .who{display:flex;align-items:center;gap:12px}
+  .review .av{width:46px;height:46px;border-radius:50%;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--serif);color:var(--navy);font-size:20px}
+  .review .who b{color:var(--navy);font-weight:500} .review .who span{font-size:13px;color:var(--muted)}
+  .stars{color:var(--gold);letter-spacing:3px;font-size:13px;margin-bottom:14px}
+  .rating{font-family:var(--serif);font-size:64px;color:var(--navy)}
+  @media(max-width:880px){ .rev{grid-template-columns:1fr} }
+
+  /* CTA */
+  .final{text-align:center;background:var(--cream)}
+
+  footer{background:var(--navy);color:rgba(255,255,255,.6);padding:80px 0 40px;font-size:14px}
+  .fcols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+  footer h4{font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:16px;font-weight:500}
+  footer a{display:block;padding:5px 0;color:rgba(255,255,255,.6)}
+  footer a:hover{color:var(--gold-soft)}
+  footer .logo{height:60px;margin-bottom:18px}
+  .req{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.13);font-size:13px}
+  @media(max-width:760px){ .fcols{grid-template-columns:1fr 1fr} }
+  @media(max-width:560px){
+    .grid4{grid-template-columns:1fr}
+    .dir{grid-template-columns:1fr}
+    .quiz .row{grid-template-columns:1fr}
+    .fcols{grid-template-columns:1fr;gap:26px}
+    .hero .sub{font-size:18px}
+    .hero-sv{padding:8px 18px 8px 8px}
+  }
+</style>
+</head>
+<body>
+
+<!-- reusable golden arc -->
+<svg style="display:none"><defs>
+  <linearGradient id="goldgrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#E7CF86" stop-opacity="0"/><stop offset=".5" stop-color="#D4AF37"/><stop offset="1" stop-color="#E7CF86" stop-opacity="0"/>
+  </linearGradient>
+</defs></svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" style="display:flex;align-items:center"><img class="logo" src="img/logo-nav.png" alt="Лето Всегда"></a>
+    <nav><a href="#svetlana">Светлана</a><a href="#napravleniya">Направления</a><a href="#help">Путешественнику</a><a href="#how">Как работаем</a><a href="#reviews">Отзывы</a><a href="#zayavka" class="m-cta">Заказать звонок</a></nav>
+    <a href="#zayavka" class="btn btn-navy bar-cta" style="padding:12px 26px">Заказать звонок</a>
+    <button class="burger" aria-label="Меню" aria-expanded="false"><span class="bl">Меню</span><span class="lines"><span></span><span></span><span></span></span></button>
+  </div>
+</header>
+
+<!-- HERO: radical minimal -->
+<section class="hero">
+  <div class="wrap">
+    <div class="kick" style="color:var(--gold-soft)">Туристическое агентство Светланы Городиловой</div>
+    <h1>Лето, в которое хочется вернуться</h1>
+    <p class="sub">Внимательный подбор и сопровождение — от выбора до возвращения домой.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="#quiz" class="btn btn-white">Подобрать отдых</a>
+      <a href="#zayavka" class="btn btn-light">Заказать звонок</a>
+    </div>
+    <div class="hero-sv"><div class="av" style="background-image:url('assets/svetlana.jpg');background-size:cover;background-position:center 16%;font-size:0">С</div><div class="t"><b>Светлана Городилова</b>проверю отель, перелёт и условия перед бронированием</div></div>
+  </div>
+  <div class="scroll">↓ листайте</div>
+  <svg class="arc-overlay" viewBox="0 0 1440 140" preserveAspectRatio="none">
+    <path d="M0,120 C400,30 1040,30 1440,120" fill="none" stroke="url(#goldgrad)" stroke-width="2.5"/>
+    <circle cx="1180" cy="55" r="6" fill="#D4AF37"/>
+  </svg>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement"><div class="wrap narrow">
+  <div class="kick">Философия</div>
+  <h2>Тур — это не продукт.<br>Это <em>часть путешествия.</em></h2>
+  <p class="lead muted" style="margin-top:30px;max-width:48ch;margin-left:auto;margin-right:auto">Клиент покупает не отель и не перелёт, а уверенность, что отпуск пройдёт хорошо. Наша роль — сопровождение, доверие и спокойствие.</p>
+  <svg class="arc" viewBox="0 0 680 90" style="margin-top:40px"><path d="M40,70 C220,10 460,10 640,70" fill="none" stroke="url(#goldgrad)" stroke-width="2"/><circle cx="540" cy="32" r="5" fill="#D4AF37"/></svg>
+</div></section>
+
+<!-- SVETLANA -->
+<section id="svetlana" style="padding-top:0"><div class="wrap sv">
+  <div class="photo"><span class="cap">Светлана Городилова</span>
+    <img src="assets/svetlana.jpg" alt="Светлана Городилова" style="object-position:center 18%">
+  </div>
+  <div>
+    <div class="kick">Светлана Городилова</div>
+    <h2 style="font-size:clamp(32px,3.6vw,48px)">Подбираю отдых как&nbsp;для&nbsp;своих</h2>
+    <p class="lead">12+ лет помогаю людям отдыхать спокойнее. Знаю, как выбрать отель без неприятных сюрпризов и что проверить до поездки.</p>
+    <ul>
+      <li>Лично проверяю отель, перелёт и условия перед бронированием</li>
+      <li>Веду от выбора тура до возвращения домой</li>
+      <li>Спокойный подбор — без навязывания и тревожного языка</li>
+    </ul>
+    <a href="#zayavka" class="btn btn-navy">Написать Светлане</a>
+  </div>
+</div></section>
+
+<!-- TRUST -->
+<section style="background:#fcfbf9"><div class="wrap center">
+  <div class="kick">Почему нам доверяют</div>
+  <h2>Спокойно, по-человечески,<br>до возвращения домой</h2>
+  <div class="grid4">
+    <div class="tcell"><div class="nn">01</div><h3 style="font-size:20px">Подбор под вас</h3><p class="muted" style="margin:0;font-size:15px">Внимательный выбор под бюджет, даты и стиль отдыха.</p></div>
+    <div class="tcell"><div class="nn">02</div><h3 style="font-size:20px">Проверенные отели</h3><p class="muted" style="margin:0;font-size:15px">Светлана проверяет отель, пляж, перелёт и подводные камни.</p></div>
+    <div class="tcell"><div class="nn">03</div><h3 style="font-size:20px">Сопровождение</h3><p class="muted" style="margin:0;font-size:15px">Трансфер, отель, экскурсии, памятки — всё рядом.</p></div>
+    <div class="tcell"><div class="nn">04</div><h3 style="font-size:20px">На связи в поездке</h3><p class="muted" style="margin:0;font-size:15px">Помогаем с вопросами на месте, а не бросаем после оплаты.</p></div>
+  </div>
+</div></section>
+
+<!-- DIRECTIONS carousel -->
+<section id="napravleniya">
+  <div class="wrap center"><div class="kick">Куда сейчас едут</div><h2>Направления</h2><div class="hint">захватите и тяните · или стрелки</div></div>
+  <div class="carousel-wrap">
+  <button class="car-arrow car-prev" aria-label="Назад">‹</button>
+  <div class="carousel">
+    <div class="dest" style="background-image:url('assets/dir-turkey.jpg')"><div class="b"><h3>Турция</h3><div class="p">Семейный отдых · всё включено<small>короткий перелёт · от 78 000 ₽</small></div></div></div>
+    <div class="dest" style="background-image:url('assets/dir-egypt.jpg')"><div class="b"><h3>Египет</h3><div class="p">Море зимой · рифы<small>хороший бюджет · от 95 000 ₽</small></div></div></div>
+    <div class="dest" style="background-image:url('assets/dir-uae.jpg')"><div class="b"><h3>ОАЭ</h3><div class="p">Солнце зимой · город и пляж<small>от 112 000 ₽</small></div></div></div>
+    <div class="dest" style="background-image:url('assets/dir-thailand.jpg')"><div class="b"><h3>Таиланд</h3><div class="p">Экзотика · долгий отдых<small>море · от 134 000 ₽</small></div></div></div>
+    <div class="dest" style="background-image:url('assets/dir-maldives.jpg')"><div class="b"><h3>Мальдивы</h3><div class="p">Океан и тишина<small>медовый месяц · от 210 000 ₽</small></div></div></div>
+    <div class="dest" style="background-image:url('assets/dir-greece.jpg')"><div class="b"><h3>Греция</h3><div class="p">Острова и история<small>мягкий климат · от 98 000 ₽</small></div></div></div>
+  </div>
+  <button class="car-arrow car-next" aria-label="Вперёд">›</button>
+  </div>
+</section>
+
+<div style="padding:26px 0 0"><svg class="route" viewBox="0 0 1080 60" preserveAspectRatio="xMidYMid meet"><path d="M30,34 C340,-8 740,74 1050,30" fill="none" stroke="url(#goldgrad)" stroke-width="1.6" stroke-dasharray="1.5 9"/><circle cx="30" cy="34" r="4.5" fill="#D4AF37"/><circle cx="1050" cy="30" r="4.5" fill="#D4AF37"/></svg></div>
+
+<!-- QUIZ -->
+<section style="padding-top:0"><div class="wrap center">
+  <div class="quiz">
+    <div class="kick">Подбор за 2 минуты</div>
+    <h2 style="font-size:clamp(30px,3.4vw,44px)">Расскажите, какой отдых вам нужен</h2>
+    <p class="muted" style="max-width:50ch;margin:0 auto">Светлана подготовит несколько вариантов и проверит отель, перелёт и условия.</p>
+    <svg class="route" style="max-width:300px;margin:20px auto 0" viewBox="0 0 300 26" preserveAspectRatio="xMidYMid meet"><path d="M12,13 H288" stroke="url(#goldgrad)" stroke-width="1.3" stroke-dasharray="1.5 9" fill="none"/><circle cx="12" cy="13" r="3.5" fill="#D4AF37"/><circle cx="288" cy="13" r="3.5" fill="#D4AF37"/></svg>
+    <div class="row">
+      <div class="f sel"><span>Куда хотите</span><b>Любое направление</b></div>
+      <div class="f sel"><span>Когда</span><b>Июль 2026</b></div>
+      <div class="f sel"><span>Кто едет</span><b>Семья с детьми</b></div>
+      <div class="f sel"><span>Бюджет</span><b>до 150 000 ₽</b></div>
+    </div>
+    <div class="chips">
+      <span style="font-size:13px;color:var(--muted);align-self:center;margin-right:4px">Что важно:</span>
+      <span class="chip on">Море</span><span class="chip">Всё включено</span><span class="chip">С детьми</span><span class="chip">Спокойствие</span><span class="chip">Экскурсии</span>
+    </div>
+    <a href="#zayavka" class="btn btn-navy">Получить варианты от Светланы</a>
+  </div>
+</div></section>
+
+<!-- CINEMATIC BAND -->
+<div class="band"><div class="wrap">
+  <div class="kick" style="color:var(--gold-soft)">Лето Всегда</div>
+  <h2>Вы просто отдыхаете —<br>остальное берёт на себя Светлана</h2>
+  <div class="q">«Подбираем отдых как для своих»</div>
+</div></div>
+
+<!-- SIGNATURE: Света рекомендует (фирменный паттерн бренда) -->
+<section class="sreco" style="padding-top:58px;padding-bottom:44px"><div class="wrap">
+  <div class="center" style="margin-bottom:34px"><div class="kick">Личный совет</div><h2 style="font-size:clamp(30px,3.4vw,46px)">Света рекомендует</h2></div>
+  <div class="card">
+    <div class="ava"></div>
+    <div>
+      <p class="txt">«Перед выбором тура проверьте три вещи — иначе спокойный отдых легко испортить.»</p>
+      <ul class="reco-list">
+        <li><span class="d"></span>Срок действия паспорта</li>
+        <li><span class="d"></span>Сезонность направления</li>
+        <li><span class="d"></span>Удалённость отеля от аэропорта</li>
+      </ul>
+      <div class="by">Это я проверяю перед каждым бронированием · <b style="color:var(--navy);font-weight:600">Светлана Городилова</b></div>
+    </div>
+  </div>
+  <svg class="route" style="margin-top:40px" viewBox="0 0 460 40" preserveAspectRatio="xMidYMid meet"><path d="M16,22 C150,-6 310,46 444,18" fill="none" stroke="url(#goldgrad)" stroke-width="1.6" stroke-dasharray="1.5 9"/><circle cx="16" cy="22" r="4" fill="#D4AF37"/><circle cx="230" cy="30" r="4" fill="#D4AF37"/><circle cx="444" cy="18" r="4" fill="#D4AF37"/></svg>
+</div></section>
+
+<!-- EDITORIAL (Notion) -->
+<section id="help"><div class="wrap edi">
+  <div class="frame"><img src="assets/travel.jpg" alt="Путешествие"></div>
+  <div>
+    <div class="kick">Помогаем в поездке</div>
+    <h2 style="font-size:clamp(32px,3.6vw,52px)">Полезно путешественнику</h2>
+    <ul>
+      <li><b>·</b> Памятки по странам: документы, валюта, связь, сезонность</li>
+      <li><b>·</b> Чек-лист перед вылетом и «что взять с собой»</li>
+      <li><b>·</b> Проверить ценник: фото → цена в рублях по курсу ЦБ</li>
+      <li><b>·</b> Помощник по одежде под страну, даты и погоду</li>
+    </ul>
+    <div class="reco"><b>Света рекомендует</b><span class="muted">Скачайте офлайн-карты заранее и проверьте срок паспорта до выбора тура.</span></div>
+  </div>
+</div></section>
+
+<!-- HOW -->
+<section id="how" style="background:#fcfbf9"><div class="wrap">
+  <div class="center"><div class="kick">Как мы работаем</div><h2>Три спокойных шага</h2><svg class="route" style="margin:18px auto 0" viewBox="0 0 460 30" preserveAspectRatio="xMidYMid meet"><path d="M16,15 H444" stroke="url(#goldgrad)" stroke-width="1.4" stroke-dasharray="1.5 9" fill="none"/><circle cx="16" cy="15" r="4" fill="#D4AF37"/><circle cx="230" cy="15" r="4" fill="#D4AF37"/><circle cx="444" cy="15" r="4" fill="#D4AF37"/></svg></div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Рассказываете пожелания</h3><p class="muted">Кто едет, бюджет, даты, что важно и чего избежать.</p></div>
+    <div class="step"><div class="n">2</div><h3>Получаете варианты</h3><p class="muted">Светлана подбирает и проверяет отель, перелёт и условия.</p></div>
+    <div class="step"><div class="n">3</div><h3>Бронируем и сопровождаем</h3><p class="muted">Оформление, подготовка и поддержка до возвращения домой.</p></div>
+  </div>
+</div></section>
+
+<!-- REVIEWS -->
+<section id="reviews"><div class="wrap center">
+  <div class="kick">Отзывы</div>
+  <h2>Реальные поездки наших клиентов</h2>
+  <div class="rating">4.9<span class="muted" style="font-family:var(--sans);font-size:16px"> / 5 · 240+ отзывов</span></div>
+  <div class="rev">
+    <div class="review"><div class="stars">★★★★★</div><div class="q">«Отговорила от отеля у стройки и подобрала лучше за те же деньги. Отдохнули спокойно.»</div><div class="who"><div class="av">А</div><div><b>Анна, Москва</b><br><span>Турция · июнь 2026</span></div></div></div>
+    <div class="review"><div class="stars">★★★★★</div><div class="q">«Помогли с трансфером и вопросами на месте. Чувствовали, что не одни.»</div><div class="who"><div class="av">И</div><div><b>Игорь, Ижевск</b><br><span>ОАЭ · май 2026</span></div></div></div>
+    <div class="review"><div class="stars">★★★★★</div><div class="q">«Первый раз летели с ребёнком — памятки и подсказки Светы очень выручили.»</div><div class="who"><div class="av">М</div><div><b>Мария, Казань</b><br><span>Египет · апрель 2026</span></div></div></div>
+  </div>
+</div></section>
+
+<!-- FINAL CTA -->
+<section class="final"><div class="wrap narrow">
+  <div class="kick">Заявка</div>
+  <h2>Расскажите, куда хотите —<br>остальное на Светлане</h2>
+  <p class="lead muted" style="max-width:46ch;margin:0 auto 36px">Подберём отдых под ваш бюджет, даты и стиль, проверим всё вручную и будем на связи в поездке.</p>
+  <a href="#" class="btn btn-navy">Подобрать отдых</a>
+  <a href="#" class="btn btn-line" style="margin-left:12px">Написать в Telegram</a>
+  <svg class="arc" viewBox="0 0 680 90" style="margin-top:50px"><path d="M40,70 C220,10 460,10 640,70" fill="none" stroke="url(#goldgrad)" stroke-width="2"/><circle cx="540" cy="32" r="5" fill="#D4AF37"/></svg>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fcols">
+    <div><img class="logo" src="img/logo-gold.png" alt="Лето Всегда"><p style="color:rgba(255,255,255,.6)">Подбираем отдых как для своих — спокойно, по-человечески, до возвращения домой.</p></div>
+    <div><h4>Навигация</h4><a href="#svetlana">Светлана</a><a href="#napravleniya">Направления</a><a href="#help">Путешественнику</a><a href="#how">Как работаем</a></div>
+    <div><h4>Контакты</h4><a href="#">Telegram</a><a href="#">ВКонтакте</a><a href="#">MAX</a><a href="#">letovsegda.ru</a></div>
+    <div><h4>Документы</h4><a href="#">Договор</a><a href="#">Оплата</a><a href="#">Реквизиты / реестр</a><a href="#">Политика</a></div>
+  </div>
+  <div class="req">ИП Городилова С. · реестр турагентств · Ижевск, онлайн по всей России · © 2026 Лето Всегда · прототип v4.1 · фото: Unsplash (royalty-free)</div>
+</div></footer>
+
+<script>(function(){var h=document.querySelector('header');function s(){h.classList.toggle('scrolled',window.scrollY>24);}s();window.addEventListener('scroll',s,{passive:true});var bg=h.querySelector('.burger');if(bg){bg.addEventListener('click',function(){h.classList.toggle('open');bg.setAttribute('aria-expanded',h.classList.contains('open'));});h.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){h.classList.remove('open');});});}var cr=document.querySelector('.carousel');if(cr){var dn=false,sx=0,sl=0,mv=false;cr.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;dn=true;mv=false;sx=e.clientX;sl=cr.scrollLeft;cr.classList.add('dragging');});cr.addEventListener('pointermove',function(e){if(!dn)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)mv=true;cr.scrollLeft=sl-dx;});function up(){dn=false;cr.classList.remove('dragging');}cr.addEventListener('pointerup',up);cr.addEventListener('pointercancel',up);cr.addEventListener('pointerleave',up);cr.addEventListener('click',function(e){if(mv){e.preventDefault();e.stopPropagation();}},true);function sw(){var c=cr.querySelector('.dest');return c?c.getBoundingClientRect().width+20:320;}var pv=document.querySelector('.car-prev'),nx=document.querySelector('.car-next');pv&&pv.addEventListener('click',function(){cr.scrollBy({left:-sw(),behavior:'smooth'});});nx&&nx.addEventListener('click',function(){cr.scrollBy({left:sw(),behavior:'smooth'});});}})();</script>
+</body>
+</html>
